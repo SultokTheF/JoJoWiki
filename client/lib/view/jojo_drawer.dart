@@ -26,25 +26,25 @@ class JoJoDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('List of Stuff'),
+            title: Text('Stuff'),
             onTap: () {
               Navigator.pushReplacementNamed(context, '/listOfStuff');
             },
           ),
           ListTile(
-            title: Text('List of Actors'),
+            title: Text("JoJo's"),
             onTap: () {
               Navigator.pushReplacementNamed(context, '/listOfActors');
             },
           ),
           ListTile(
-            title: Text('List of News'),
+            title: Text('News'),
             onTap: () {
               Navigator.pushReplacementNamed(context, '/listOfNews');
             },
           ),
           ListTile(
-            title: Text('List of Comments'),
+            title: Text('Comments'),
             onTap: () {
               Navigator.pushReplacementNamed(context, '/listOfComments');
             },

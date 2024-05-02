@@ -3,9 +3,12 @@ import '../model/actor.dart';
 class ActorController {
   List<Actor> getActorList() {
     return [
-      Actor('Actor 1'),
-      Actor('Actor 2'),
-      Actor('Actor 3'),
+      Actor('Jonathan Jostar', '1'),
+      Actor('Joseph Jostar', '1,2,3,4'),
+      Actor('Jotaro Kujo', '2,3,4,6'),
+      Actor('Josuke Higashikava', '4'),
+      Actor('Giorno Giovanna', '5'),
+      Actor('Jolyne Cujoh', '6'),
     ];
   }
 }
