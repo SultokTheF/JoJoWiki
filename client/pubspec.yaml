@@ -53,3 +53,6 @@ flutter:
 
   assets:
     - assets/actors/
+    - assets/stuff/
+    - assets/news/
+    - assets/features/

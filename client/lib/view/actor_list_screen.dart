@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import '../controller/actor_controller.dart';
 import '../model/actor.dart';
 import '../view/jojo_drawer.dart';
+import 'actor_details_screen.dart'; // Import the ActorDetailsScreen
 
 class ActorListScreen extends StatelessWidget {
   final ActorController _actorController = ActorController();
+
+  ActorListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,33 +15,33 @@ class ActorListScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('JoJo Main Actors'),
+        title: const Text('JoJo Main Actors'),
       ),
-      drawer: JoJoDrawer(),
+      drawer: const JoJoDrawer(),
       body: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, // Two cards per row
-          childAspectRatio: 0.75, // Aspect ratio for the cards
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 0.75,
         ),
         itemCount: actorList.length,
         itemBuilder: (context, index) {
           Actor actor = actorList[index];
           return Card(
-            elevation: 4, // Add elevation for a shadow effect
+            elevation: 4,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 SizedBox(
-                  height: 161, // Increased height of the Card by 11 pixels
+                  height: 161,
                   child: Container(
-                    margin: EdgeInsets.all(8.0),
+                    margin: const EdgeInsets.all(8.0),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(4.0),
                         topRight: Radius.circular(4.0),
                       ),
                       child: Image.asset(
-                        'assets/actors/${actor.name.toLowerCase()}.png',
+                        actor.imageUrl,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -51,32 +54,37 @@ class ActorListScreen extends StatelessWidget {
                     children: [
                       Text(
                         actor.name,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                         ),
                       ),
-                      SizedBox(height: 4),
+                      const SizedBox(height: 4),
                       Text(
                         'Seasons: ${actor.season}',
-                        style: TextStyle(fontSize: 16),
+                        style: const TextStyle(fontSize: 16),
                       ),
                     ],
                   ),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    // Navigate to more details screen or show a dialog with more details
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ActorDetailsScreen(actor: actor),
+                      ),
+                    );
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
                     overlayColor: MaterialStateProperty.all<Color>(Colors.blue.shade500),
-                    foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set text color to white
+                    foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                     textStyle: MaterialStateProperty.all<TextStyle>(
-                      TextStyle(fontSize: 15), 
+                      const TextStyle(fontSize: 15),
                     ),
                   ),
-                  child: Text('More Details ->'),
+                  child: const Text('More Details ->'),
                 ),
               ],
             ),

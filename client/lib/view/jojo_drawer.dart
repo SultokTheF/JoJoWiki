@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
 class JoJoDrawer extends StatelessWidget {
+  const JoJoDrawer({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          DrawerHeader(
+          const DrawerHeader(
             decoration: BoxDecoration(
               color: Colors.blue,
             ),
             child: Text(
-              'JoJo App',
+              'JoJo Wiki',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 24,
@@ -20,35 +22,29 @@ class JoJoDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            title: Text('Main'),
+            title: const Text('Main'),
             onTap: () {
               Navigator.pushReplacementNamed(context, '/');
             },
           ),
           ListTile(
-            title: Text('Stuff'),
-            onTap: () {
-              Navigator.pushReplacementNamed(context, '/listOfStuff');
-            },
-          ),
-          ListTile(
-            title: Text("JoJo's"),
+            title: const Text("JoJos"),
             onTap: () {
               Navigator.pushReplacementNamed(context, '/listOfActors');
             },
           ),
           ListTile(
-            title: Text('News'),
+            title: const Text('Stuff'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, '/listOfNews');
+              Navigator.pushReplacementNamed(context, '/listOfStuff');
             },
           ),
           ListTile(
-            title: Text('Comments'),
+            title: const Text('News'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, '/listOfComments');
+              Navigator.pushReplacementNamed(context, '/listOfNews');
             },
-          ),
+          )
         ],
       ),
     );

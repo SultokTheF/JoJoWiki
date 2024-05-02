@@ -3,11 +3,12 @@ import 'package:client/view/main_screen.dart';
 import 'package:client/view/stuff_list_screen.dart';
 import 'package:client/view/actor_list_screen.dart';
 import 'package:client/view/news_list_screen.dart';
-import 'package:client/view/comments_list_screen.dart';
 
-void main() => runApp(JoJoApp());
+void main() => runApp(const JoJoApp());
 
 class JoJoApp extends StatelessWidget {
+  const JoJoApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,8 +22,7 @@ class JoJoApp extends StatelessWidget {
         '/': (context) => MainScreen(),
         '/listOfStuff': (context) => StuffListScreen(),
         '/listOfActors': (context) => ActorListScreen(),
-        '/listOfNews': (context) => NewsListScreen(),
-        '/listOfComments': (context) => CommentsListScreen(),
+        '/listOfNews': (context) => const NewsListScreen(),
       },
     );
   }
