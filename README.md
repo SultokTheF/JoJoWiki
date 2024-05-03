@@ -1,4 +1,4 @@
-![Untitled-1](https://github.com/SultokTheF/JoJoWiki/assets/116245093/26c429ce-084d-4de2-98a9-11f3a87249b2)# Jojowiki
+## JojoWiki
 
 Jojowiki is a comprehensive encyclopedia-style project dedicated to the iconic anime and manga series, JoJo's Bizarre Adventure. Inspired by Wikipedia, Jojowiki aims to be the ultimate online resource for fans and enthusiasts of the JoJo universe.
 
