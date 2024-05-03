@@ -6,6 +6,11 @@ Jojowiki is a comprehensive encyclopedia-style project dedicated to the iconic a
 
 As a homage to Hirohiko Araki's acclaimed work, Jojowiki serves as a repository of knowledge encompassing all aspects of JoJo's Bizarre Adventure. From the adventures of the Joestar family across generations to the intricate details of Stand abilities, Jojowiki strives to provide an immersive experience for fans old and new.
 ![Untitled-1](https://github.com/SultokTheF/JoJoWiki/assets/116245093/2fec0e82-1cac-4022-882f-700cd08014fe)
+Wireframe:
+![image](https://github.com/SultokTheF/JoJoWiki/assets/117799585/3b16558f-f41b-4ff9-9204-42cf10009ec7)
+![image](https://github.com/SultokTheF/JoJoWiki/assets/117799585/8c35af85-c6d0-4be9-808a-af7c6ff25f73)
+
+
 
 ## Features
 
