@@ -9,7 +9,7 @@ As a homage to Hirohiko Araki's acclaimed work, Jojowiki serves as a repository 
 Wireframe:
 ![image](https://github.com/SultokTheF/JoJoWiki/assets/117799585/3b16558f-f41b-4ff9-9204-42cf10009ec7)
 ![image](https://github.com/SultokTheF/JoJoWiki/assets/117799585/8c35af85-c6d0-4be9-808a-af7c6ff25f73)
-
+![image](https://github.com/SultokTheF/JoJoWiki/assets/117799585/64eab934-1b67-495b-b2a8-19334f68cf5f)
 
 
 ## Features
