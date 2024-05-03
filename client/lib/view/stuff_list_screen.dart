@@ -15,7 +15,14 @@ class StuffListScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Developers NPC Stuff'),
+        title: const Text(
+          'NPC Stuff',
+          style: TextStyle(
+            fontSize: 20,
+            fontFamily: 'JoJoFont',
+            fontWeight: FontWeight.bold,
+          )
+        ),
       ),
       drawer: const JoJoDrawer(),
       body: GridView.builder(

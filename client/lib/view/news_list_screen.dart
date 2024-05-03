@@ -5,9 +5,10 @@ import '../view/jojo_drawer.dart';
 import 'news_details_screen.dart'; // Import the NewsDetailsScreen
 
 class NewsListScreen extends StatefulWidget {
-  const NewsListScreen({Key? key}) : super(key: key);
+  const NewsListScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _NewsListScreenState createState() => _NewsListScreenState();
 }
 

@@ -45,6 +45,10 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  fonts:
+    - family: JoJoFont
+      fonts:
+        - asset: assets/fonts/JOJO____.TTF
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

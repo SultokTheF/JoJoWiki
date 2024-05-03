@@ -5,9 +5,10 @@ import '../model/comment.dart';
 class NewsDetailsScreen extends StatefulWidget {
   final News news;
 
-  const NewsDetailsScreen({Key? key, required this.news}) : super(key: key);
+  const NewsDetailsScreen({super.key, required this.news});
 
   @override
+  // ignore: library_private_types_in_public_api
   _NewsDetailsScreenState createState() => _NewsDetailsScreenState();
 }
 
@@ -21,7 +22,14 @@ class _NewsDetailsScreenState extends State<NewsDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.news.title),
+        title: const Text(
+          "JoJo",
+          style: TextStyle(
+            fontSize: 20,
+            fontFamily: 'JoJoFont',
+            fontWeight: FontWeight.bold,
+          )
+        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),

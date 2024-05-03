@@ -18,7 +18,14 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('JoJo App'),
+        title: const Text(
+          'JoJo App',
+          style: TextStyle(
+            fontSize: 20,
+            fontFamily: 'JoJoFont',
+            fontWeight: FontWeight.bold,
+          )
+        ),
         backgroundColor: Colors.blue, // Change app bar color to blue
       ),
       drawer: const JoJoDrawer(),

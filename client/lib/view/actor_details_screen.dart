@@ -10,7 +10,14 @@ class ActorDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(actor.name),
+        title: Text(
+          actor.name,
+          style: const TextStyle(
+            fontSize: 18,
+            fontFamily: 'JoJoFont',
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         backgroundColor: Colors.blue,
       ),
       body: SingleChildScrollView(

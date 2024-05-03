@@ -17,6 +17,7 @@ class JoJoDrawer extends StatelessWidget {
               'JoJo Wiki',
               style: TextStyle(
                 color: Colors.white,
+                fontFamily: 'JoJoFont',
                 fontSize: 24,
               ),
             ),

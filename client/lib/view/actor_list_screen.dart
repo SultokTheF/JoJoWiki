@@ -15,7 +15,14 @@ class ActorListScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('JoJo Main Actors'),
+        title: const Text(
+          'Actors',
+          style: TextStyle(
+            fontSize: 20,
+            fontFamily: 'JoJoFont',
+            fontWeight: FontWeight.bold,
+          )
+        ),
       ),
       drawer: const JoJoDrawer(),
       body: GridView.builder(
@@ -56,14 +63,11 @@ class ActorListScreen extends StatelessWidget {
                         actor.name,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 18,
+                          fontFamily: 'JoJoFont',
+                          fontSize: 15,
                         ),
                       ),
                       const SizedBox(height: 4),
-                      Text(
-                        'Seasons: ${actor.season}',
-                        style: const TextStyle(fontSize: 16),
-                      ),
                     ],
                   ),
                 ),
