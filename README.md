@@ -20,9 +20,28 @@ Explore the fascinating world of Stands, supernatural manifestations of psychic 
 ### News and Updates
 Stay up-to-date with the latest news, announcements, and developments related to JoJo's Bizarre Adventure. From new manga releases to upcoming anime adaptations, Jojowiki keeps fans informed about the ever-expanding world of JoJo.
 
+Sure, here's the updated installation section:
+
 ## Installation
 
-Jojowiki is accessible through any web browser, providing instant access to its wealth of information. Simply visit [jojowiki.com](https://www.jojowiki.com) to start exploring the JoJo universe today.
+To set up Jojowiki locally, follow these steps:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/username/jojowiki.git
+   ```
+
+2. Navigate to the project directory:
+   ```bash
+   cd jojowiki
+   ```
+
+3. Run the following commands to install dependencies and run the app:
+   ```bash
+   flutter pub get
+   flutter run
+   ```
+
 
 ## Contributing
 
