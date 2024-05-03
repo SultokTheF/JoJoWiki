@@ -1,34 +1,43 @@
+// Importing the 'stuff.dart' file which likely contains the definition of the Stuff class.
 import '../model/stuff.dart';
 
+// Defining a class called 'StuffController' which likely handles operations related to 'Stuff' objects.
 class StuffController {
+  
+  // A method to retrieve a list of 'Stuff' objects.
   List<Stuff> getStuffList() {
+    // Returning a list of 'Stuff' objects with detailed information about each staff member.
     return [
-      Stuff(
-        'Samsa Nurai',
-        20,
-        'UI/UX Designer',
-        'As a UI/UX Designer, Samsa Nurai brings innovative design concepts and user-friendly interfaces to our projects, enhancing the overall user experience.',
-        'assets/stuff/nurai.jpg',
-      ),
+      // Creating a 'Stuff' object for Samsa Nurai.
+        Stuff(
+          'Samsa Nurai',
+          20,
+          'UI/UX Designer',
+          'Samsa Nurai plays a vital role as a UI/UX Designer within the team. With a keen eye for innovation, Samsa introduces cutting-edge design concepts and implements user-friendly interfaces across our projects. Their focus on enhancing the overall user experience ensures that our applications are not only functional but also intuitive and engaging.',
+          'assets/stuff/nurai.jpg',
+        ),
+      // Creating a 'Stuff' object for Nurym Abzal.
       Stuff(
         'Nurym Abzal',
         19,
         'Models Designer',
-        "Nurym Abzal's expertise as a Models Designer ensures that our projects have robust and efficient data models, contributing to seamless functionality and performance.",
+        'As a Models Designer, Nurym Abzal brings a wealth of expertise to the table. Their primary responsibility lies in crafting robust and efficient data models for our projects. Their meticulous approach ensures seamless functionality and optimal performance across various aspects of our applications.',
         'assets/stuff/askar.jpg',
       ),
+      // Creating a 'Stuff' object for Sultok Sultaniyar.
       Stuff(
         'Sultok Sultaniyar',
         19,
         'Views Designer',
-        'Sultok Sultaniyar is a Views Designer who crafts visually appealing and responsive layouts, making our applications visually engaging and accessible to users.',
+        'Sultok Sultaniyar is instrumental in shaping the visual identity of our applications. As a Views Designer, they specialize in creating visually appealing and responsive layouts. Their designs not only captivate users but also ensure accessibility, making our applications both aesthetically pleasing and user-friendly.',
         'assets/stuff/sultaniyar.jpg',
       ),
+      // Creating a 'Stuff' object for SanzharTheF.
       Stuff(
         'SanzharTheF',
         19,
         'Controllers Designer',
-        'SanzharTheF excels as a Controllers Designer, implementing logical and structured control flows that ensure the smooth operation and functionality of our applications.',
+        'SanzharTheF is the backbone of our application\'s functionality. In their role as a Controllers Designer, they excel in implementing logical and structured control flows. Their contributions guarantee the smooth operation and functionality of our applications, ensuring a seamless user experience.',
         'assets/stuff/sanzhar.jpg',
       ),
     ];
