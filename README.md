@@ -58,3 +58,4 @@ Jojowiki thrives on community contributions and collaboration. Whether you're pa
 Jojowiki is licensed under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/). You are free to share and adapt the content for non-commercial purposes, provided you give appropriate credit and adhere to the license terms.
 
 Wireframe: https://www.canva.com/design/DAGEEWIBbeA/mZskHnEXhLkgtJOJ2tD6xw/edit
+Figma: https://www.figma.com/file/q8CacNqqxGfAiLOz1psQi7/Low-fid-Wireframe-Draft-(Community)?type=whiteboard&node-id=0%3A1&t=K4OFBE4YpHNn7qLi-1
