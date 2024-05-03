@@ -1,9 +1,3 @@
-# JoJoWiki
-Wireframe: https://www.canva.com/design/DAGEEWIBbeA/mZskHnEXhLkgtJOJ2tD6xw/edit
-Sure, here's a description for your project, "Jojowiki":
-
----
-
 # Jojowiki
 
 Jojowiki is a comprehensive encyclopedia-style project dedicated to the iconic anime and manga series, JoJo's Bizarre Adventure. Inspired by Wikipedia, Jojowiki aims to be the ultimate online resource for fans and enthusiasts of the JoJo universe.
@@ -38,6 +32,4 @@ Jojowiki thrives on community contributions and collaboration. Whether you're pa
 
 Jojowiki is licensed under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/). You are free to share and adapt the content for non-commercial purposes, provided you give appropriate credit and adhere to the license terms.
 
----
-
-Feel free to adjust the description as needed to better reflect the goals and features of your Jojowiki project!
+Wireframe: https://www.canva.com/design/DAGEEWIBbeA/mZskHnEXhLkgtJOJ2tD6xw/edit
