@@ -11,7 +11,7 @@ class NewsController {
       News(
         'Welcome to Our New Team Member',
         'assets/news/new_member.jpg',
-        'We are excited to announce a new member joining our team. Let\'s give to Abzal Nurym a warm welcome!',
+        'We are excited to announce a new member joining our team. Let\'s give to Asqar Nurym a warm welcome!',
       ),
       News(
         'JoJo’s Bizarre Adventure: Stone Ocean x Path to Nowhere',
