@@ -5,6 +5,7 @@ import 'package:client/view/actor_list_screen.dart';
 import 'package:client/view/news_list_screen.dart';
 import 'package:client/view/login_screen.dart'; // Import LoginScreen
 import 'package:client/view/register_screen.dart'; // Import RegisterScreen
+import 'package:client/view/event_screen.dart'; // Import EventScreen
 
 void main() => runApp(const JoJoApp());
 
@@ -26,8 +27,9 @@ class JoJoApp extends StatelessWidget {
         '/listOfStuff': (context) => StuffListScreen(),
         '/listOfActors': (context) => ActorListScreen(),
         '/listOfNews': (context) => const NewsListScreen(),
-        '/login': (context) => LoginScreen(), // Add route for LoginScreen
-        '/register': (context) => RegisterScreen(), // Add route for RegisterScreen
+        '/login': (context) => LoginPage(), // Add route for LoginScreen
+        '/register': (context) => RegisterPage(), // Add route for RegisterScreen
+        '/events': (context) => const CalendarScreen(), // Add route for EventScreen
       },
     );
   }

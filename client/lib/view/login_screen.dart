@@ -1,85 +1,76 @@
 import 'package:flutter/material.dart';
-import '../services/api_service.dart';
-import '../model/user.dart';
-import '../app_styles.dart'; // Import the app styles
+import 'package:shared_preferences/shared_preferences.dart';
+import 'jojo_drawer.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-class LoginScreen extends StatelessWidget {
-  final TextEditingController emailController = TextEditingController();
+class LoginPage extends StatelessWidget {
+  final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final ApiService apiService = ApiService(baseUrl: 'http://localhost:8080');
+
+  Future<void> login(BuildContext context) async {
+    final apiUrl = 'http://localhost:8080/auth/login';
+    final userData = {
+      "email": usernameController.text,
+      "password": passwordController.text,
+    };
+
+    final response = await http.post(
+      Uri.parse(apiUrl),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(userData),
+    );
+
+    if (response.statusCode == 200) {
+      // Login successful, handle response accordingly
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('email', usernameController.text);
+
+      showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: Text('Success'),
+          content: Text('User logged in successfully.'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text('OK'),
+            ),
+          ],
+        ),
+      );
+    } else {
+      // Login failed, show error message
+      showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: Text('Error'),
+          content: Text('Failed to log in.'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Login'),
-        backgroundColor: Colors.blue, // Set the app bar color
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back), // Back button icon
-          onPressed: () {
-            Navigator.of(context).popUntil(ModalRoute.withName('/')); // Navigate back to main screen
-          },
-        ),
-      ),
+      appBar: AppBar(title: Text('Login')),
+      drawer: JoJoDrawer(),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextField(
-              controller: emailController,
-              decoration: InputDecoration(labelText: 'Email'),
-            ),
-            SizedBox(height: 16),
-            TextField(
-              controller: passwordController,
-              decoration: InputDecoration(labelText: 'Password'),
-              obscureText: true,
-            ),
-            SizedBox(height: 16),
+            TextField(controller: usernameController, decoration: InputDecoration(labelText: 'Email')),
+            TextField(controller: passwordController, decoration: InputDecoration(labelText: 'Password')),
             ElevatedButton(
-              onPressed: () async {
-                try {
-                  User user = await apiService.loginUser(emailController.text, passwordController.text);
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: Text('Login Success'),
-                        content: Text('User ${user.email} logged in successfully'),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: Text('OK'),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                } catch (e) {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: Text('Login Failed'),
-                        content: Text('Failed to login. Please try again.'),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: Text('OK'),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                }
-              },
-              style: AppStyles.elevatedButtonStyle(context),
-              child: Text('Login', style: AppStyles.textStyle),
+              onPressed: () => login(context),
+              child: Text('Login'),
             ),
           ],
         ),
