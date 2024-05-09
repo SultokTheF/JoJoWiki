@@ -1,54 +1,81 @@
 import 'package:flutter/material.dart';
-import 'package:client/services/api_service.dart';
-import 'package:client/model/user.dart';
-import '../app_styles.dart'; // Import the app styles
+import 'package:shared_preferences/shared_preferences.dart';
+import 'jojo_drawer.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-class RegisterScreen extends StatelessWidget {
+
+class RegisterPage extends StatelessWidget {
+  final TextEditingController usernameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final ApiService apiService = ApiService(baseUrl: 'http://localhost:8080');
+
+  Future<void> register(BuildContext context) async {
+    final apiUrl = 'http://localhost:8080/auth/register';
+    final userData = {
+      "username": usernameController.text,
+      "email": emailController.text,
+      "password": passwordController.text,
+    };
+
+    final response = await http.post(
+      Uri.parse(apiUrl),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(userData),
+    );
+
+    if (response.statusCode == 201) {
+      // Registration successful, handle response accordingly
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('email', emailController.text);
+      prefs.setString('username', usernameController.text);
+
+      showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: Text('Success'),
+          content: Text('User registered successfully.'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text('OK'),
+            ),
+          ],
+        ),
+      );
+    } else {
+      // Registration failed, show error message
+      showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: Text('Error'),
+          content: Text('Failed to register.'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Register'),
-        backgroundColor: Colors.blue, // Set the app bar color
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back), // Back button icon
-          onPressed: () {
-            Navigator.of(context).popUntil(ModalRoute.withName('/')); // Navigate back to main screen
-          },
-        ),
-      ),
+      appBar: AppBar(title: Text('Register')),
+      drawer: JoJoDrawer(),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextField(
-              controller: emailController,
-              decoration: InputDecoration(labelText: 'Email'),
-            ),
-            SizedBox(height: 16),
-            TextField(
-              controller: passwordController,
-              decoration: InputDecoration(labelText: 'Password'),
-              obscureText: true,
-            ),
-            SizedBox(height: 16),
+            TextField(controller: usernameController, decoration: InputDecoration(labelText: 'Username')),
+            TextField(controller: emailController, decoration: InputDecoration(labelText: 'Email')),
+            TextField(controller: passwordController, decoration: InputDecoration(labelText: 'Password')),
             ElevatedButton(
-              onPressed: () async {
-                try {
-                  User user = await apiService.registerUser(emailController.text, passwordController.text);
-                  // Handle successful registration, store accessToken in secure storage
-                } catch (e) {
-                  // Handle registration error
-                  print('Registration failed: $e');
-                }
-              },
-              style: AppStyles.elevatedButtonStyle(context),
-              child: Text('Register', style: AppStyles.textStyle),
+              onPressed: () => register(context),
+              child: Text('Register'),
             ),
           ],
         ),
