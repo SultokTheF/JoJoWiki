@@ -1,9 +1,9 @@
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+const { initializeApp } = require('firebase/app');
+const { getAnalytics } = require('firebase/analytics');
 
-import config from './config.js';
+const config = require('./config.js');
 
 const firebase = initializeApp(config.firebaseConfig);
-const analytics = getAnalytics(firebase);
+// const analytics = getAnalytics(firebase);
 
-export default firebase;
+module.exports = firebase;

@@ -1,7 +1,9 @@
-import express from 'express';
-import cors from 'cors';
+const express = require('express');
+const cors = require('cors');
 
-import config from './config.js';
+const config = require('./config.js');
+
+const ActorRoutes = require('./routes/ActorRoutes.js');
 
 // Create an express app
 const app = express();
@@ -11,6 +13,9 @@ app.use(cors({
   credentials: true,
 }));
 app.use(express.json());
+
+// Routes
+app.use('/actors', ActorRoutes);
 
 // Start the server
 const start = async () => {
