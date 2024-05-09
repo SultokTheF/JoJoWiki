@@ -1,48 +1,36 @@
 const express = require('express');
-const ActorControllers = require('../controllers/ActorControllers');
+const CommentControllers = require('../controllers/CommentControllers');
 
 const router = express.Router();
 
 /**
  * @swagger
  * tags:
- *   name: Actors
- *   description: API endpoints for managing actors
+ *   name: Comments
+ *   description: API endpoints for managing comments
  */
 
 /**
  * @swagger
  * components:
  *   schemas:
- *     Actor:
+ *     Comment:
  *       type: object
  *       properties:
- *         id:
+ *         text:
  *           type: string
- *           description: The ID of the actor.
- *         name:
+ *           description: The text content of the comment.
+ *         username:
  *           type: string
- *           description: The name of the actor.
- *         season:
- *           type: string
- *           description: The season of the actor.
- *         age:
- *           type: number
- *           description: The age of the actor.
- *         description:
- *           type: string
- *           description: The description of the actor.
- *         slogan:
- *           type: string
- *           description: The slogan of the actor.
+ *           description: The username of the commenter. Default is 'Anonymous'.
  */
 
 /**
  * @swagger
- * /actors:
+ * /comments:
  *   get:
- *     summary: Get a list of all actors
- *     tags: [Actors]
+ *     summary: Get a list of all comments
+ *     tags: [Comments]
  *     responses:
  *       '200':
  *         description: A successful response
@@ -51,31 +39,31 @@ const router = express.Router();
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Actor'
+ *                 $ref: '#/components/schemas/Comment'
  *       '404':
- *         description: No actors found
+ *         description: No comments found
  *         content:
  *           application/json:
  *             example:
  *               error:
- *                 message: No actors found
+ *                 message: No comments found
 
  *   post:
- *     summary: Create a new actor
- *     tags: [Actors]
+ *     summary: Create a new comment
+ *     tags: [Comments]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Actor'
+ *             $ref: '#/components/schemas/Comment'
  *     responses:
  *       '201':
- *         description: Actor created successfully
+ *         description: Comment created successfully
  *         content:
  *           application/json:
  *             example:
- *               message: Actor created successfully
+ *               message: Comment created successfully
  *       '400':
  *         description: Bad Request
  *         content:
@@ -88,15 +76,15 @@ const router = express.Router();
 
 /**
  * @swagger
- * /actors/{id}:
+ * /comments/{id}:
  *   get:
- *     summary: Get an actor by ID
- *     tags: [Actors]
+ *     summary: Get a comment by ID
+ *     tags: [Comments]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: ID of the actor to retrieve
+ *         description: ID of the comment to retrieve
  *         schema:
  *           type: string
  *     responses:
@@ -105,23 +93,23 @@ const router = express.Router();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Actor'
+ *               $ref: '#/components/schemas/Comment'
  *       '404':
- *         description: Actor not found
+ *         description: Comment not found
  *         content:
  *           application/json:
  *             example:
  *               error:
- *                 message: Actor not found
+ *                 message: Comment not found
 
  *   put:
- *     summary: Update an existing actor
- *     tags: [Actors]
+ *     summary: Update an existing comment
+ *     tags: [Comments]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: ID of the actor to update
+ *         description: ID of the comment to update
  *         schema:
  *           type: string
  *     requestBody:
@@ -129,21 +117,21 @@ const router = express.Router();
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Actor'
+ *             $ref: '#/components/schemas/Comment'
  *     responses:
  *       '200':
- *         description: Actor updated successfully
+ *         description: Comment updated successfully
  *         content:
  *           application/json:
  *             example:
- *               message: Actor updated successfully
+ *               message: Comment updated successfully
  *       '404':
- *         description: Actor not found
+ *         description: Comment not found
  *         content:
  *           application/json:
  *             example:
  *               error:
- *                 message: Actor not found
+ *                 message: Comment not found
  *       '400':
  *         description: Bad Request
  *         content:
@@ -153,32 +141,32 @@ const router = express.Router();
  *                 message: Bad Request
 
  *   delete:
- *     summary: Delete an actor by ID
- *     tags: [Actors]
+ *     summary: Delete a comment by ID
+ *     tags: [Comments]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: ID of the actor to delete
+ *         description: ID of the comment to delete
  *         schema:
  *           type: string
  *     responses:
  *       '204':
- *         description: Actor deleted successfully
+ *         description: Comment deleted successfully
  *       '404':
- *         description: Actor not found
+ *         description: Comment not found
  *         content:
  *           application/json:
  *             example:
  *               error:
- *                 message: Actor not found
+ *                 message: Comment not found
 
  */
 
-router.get('/', ActorControllers.GetActors);
-router.get('/:id', ActorControllers.GetActor);
-router.post('/', ActorControllers.CreateActor);
-router.put('/:id', ActorControllers.UpdateActor);
-router.delete('/:id', ActorControllers.DeleteActor);
+router.get('/', CommentControllers.GetComments);
+router.get('/:id', CommentControllers.GetComment);
+router.post('/', CommentControllers.CreateComment);
+router.put('/:id', CommentControllers.UpdateComment);
+router.delete('/:id', CommentControllers.DeleteComment);
 
 module.exports = router;
