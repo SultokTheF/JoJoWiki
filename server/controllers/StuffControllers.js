@@ -47,7 +47,7 @@ exports.CreateStuff = async (req, res, next) => {
   try {
     const data = req.body;
     await addDoc(collection(db, 'stuffs'), data);
-    res.status(201).json({ message: 'Stuff created successfully' });
+    res.status(200).json({ message: 'Stuff created successfully' });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

@@ -10,6 +10,7 @@ const ActorRoutes = require('./routes/ActorRoutes.js');
 const CommentRoutes = require('./routes/CommentRoutes.js');
 const NewsRoutes = require('./routes/NewsRoutes.js');
 const StuffRoutes = require('./routes/StuffRoutes.js');
+const EventRoutes = require('./routes/EventRoutes.js');
 
 // swagger
 const options = {
@@ -42,6 +43,7 @@ app.use('/actors', ActorRoutes);
 app.use('/comments', CommentRoutes);
 app.use('/news', NewsRoutes);
 app.use('/stuffs', StuffRoutes);
+app.use('/events', EventRoutes);
 
 // Start the server
 const start = async () => {

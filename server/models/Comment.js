@@ -1,8 +1,9 @@
 class Comment {
-  constructor(id, text, username = "anonymous") {
+  constructor(id, text, newsId, username = "anonymous") {
     this.id = id;
     this.text = text;
-    this.username = username
+    this.newsId = newsId;
+    this.username = username;
   }
 }
 
