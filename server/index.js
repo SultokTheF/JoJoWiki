@@ -1,9 +1,13 @@
 const express = require('express');
 const cors = require('cors');
+
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
+
 const config = require('./config.js');
+
 const ActorRoutes = require('./routes/ActorRoutes.js');
+const CommentRoutes = require('./routes/CommentRoutes.js');
 
 // swagger
 const options = {
@@ -33,6 +37,7 @@ app.use(express.json());
 // Routes
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 app.use('/actors', ActorRoutes);
+app.use('/comments', CommentRoutes);
 
 // Start the server
 const start = async () => {
