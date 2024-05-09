@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class JoJoDrawer extends StatelessWidget {
-  const JoJoDrawer({super.key});
+  const JoJoDrawer({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,19 @@ class JoJoDrawer extends StatelessWidget {
             onTap: () {
               Navigator.pushReplacementNamed(context, '/listOfNews');
             },
-          )
+          ),
+          ListTile(
+            title: const Text('Login'), // Add Login screen option
+            onTap: () {
+              Navigator.pushReplacementNamed(context, '/login');
+            },
+          ),
+          ListTile(
+            title: const Text('Register'), // Add Register screen option
+            onTap: () {
+              Navigator.pushReplacementNamed(context, '/register');
+            },
+          ),
         ],
       ),
     );

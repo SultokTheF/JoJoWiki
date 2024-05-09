@@ -1,22 +1,64 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import '../model/news.dart';
 import '../model/comment.dart';
 
 class NewsDetailsScreen extends StatefulWidget {
   final News news;
 
-  const NewsDetailsScreen({super.key, required this.news});
+  const NewsDetailsScreen({Key? key, required this.news}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _NewsDetailsScreenState createState() => _NewsDetailsScreenState();
 }
 
 class _NewsDetailsScreenState extends State<NewsDetailsScreen> {
   final TextEditingController commentController = TextEditingController();
-  final Map<String, List<Comment>> commentsMap = {}; // Map to store comments for each news post
-  final Map<String, TextEditingController> commentControllersMap = {}; // Map to store controllers for each news post
-  final Map<String, bool> showAllCommentsMap = {}; // Map to track whether to show all comments or not
+  List<Comment> commentsList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    loadComments();
+  }
+
+  Future<void> loadComments() async {
+    final response = await http.get(Uri.parse('http://localhost:8080/comments/news/${widget.news.id}'));
+
+    if (response.statusCode == 200) {
+      List<dynamic> jsonResponse = jsonDecode(response.body);
+      setState(() {
+        commentsList = jsonResponse.map((json) => Comment.fromJson(json)).toList();
+      });
+    } else {
+      throw Exception('Failed to load comments');
+    }
+  }
+
+  Future<void> postComment() async {
+    final Comment newComment = Comment(
+      text: commentController.text,
+      username: 'sultok', // Assuming you want to use a fixed username for posting comments
+      newsId: widget.news.id,
+    );
+
+    final response = await http.post(
+      Uri.parse('http://localhost:8080/comments'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(newComment.toJson()),
+    );
+
+    if (response.statusCode == 201) {
+      // Comment posted successfully, reload comments
+      await loadComments();
+      commentController.clear(); // Clear the input after posting the comment
+    } else {
+      throw Exception('Failed to post comment');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +70,7 @@ class _NewsDetailsScreenState extends State<NewsDetailsScreen> {
             fontSize: 20,
             fontFamily: 'JoJoFont',
             fontWeight: FontWeight.bold,
-          )
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -56,37 +98,13 @@ class _NewsDetailsScreenState extends State<NewsDetailsScreen> {
             // Display comments
             Column(
               children: [
-                // Show first two comments by default
-                ...((commentsMap[widget.news.title] ?? []).take(2).map((comment) {
+                // Show all comments
+                ...commentsList.map((comment) {
                   return ListTile(
                     title: Text(comment.text),
                     subtitle: Text('By: ${comment.username}'),
                   );
-                }).toList()),
-                // Show additional comments if "Show more" is pressed
-                if (showAllCommentsMap[widget.news.title] ?? false)
-                  ...((commentsMap[widget.news.title] ?? []).skip(2).map((comment) {
-                    return ListTile(
-                      title: Text(comment.text),
-                      subtitle: Text('By: ${comment.username}'),
-                    );
-                  }).toList()),
-                // Show more link
-                if ((commentsMap[widget.news.title]?.length ?? 0) > 2)
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        showAllCommentsMap[widget.news.title] = !(showAllCommentsMap[widget.news.title] ?? false);
-                      });
-                    },
-                    child: Text(
-                      showAllCommentsMap[widget.news.title] ?? false ? 'Show less' : 'Show more',
-                      style: const TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
+                }).toList(),
               ],
             ),
             const SizedBox(height: 12.0),
@@ -94,13 +112,10 @@ class _NewsDetailsScreenState extends State<NewsDetailsScreen> {
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: TextField(
-                controller: commentController, // Use the corresponding controller
+                controller: commentController,
                 onSubmitted: (value) {
                   if (value.isNotEmpty) {
-                    setState(() {
-                      commentsMap.putIfAbsent(widget.news.title, () => []).add(Comment(value));
-                      commentController.clear(); // Clear the input after submitting the comment
-                    });
+                    postComment(); // Call postComment when submitting the comment
                   }
                 },
                 decoration: InputDecoration(
@@ -110,10 +125,7 @@ class _NewsDetailsScreenState extends State<NewsDetailsScreen> {
                     onPressed: () {
                       String commentText = commentController.text.trim();
                       if (commentText.isNotEmpty) {
-                        setState(() {
-                          commentsMap.putIfAbsent(widget.news.title, () => []).add(Comment(commentText));
-                          commentController.clear(); // Clear the input after sending the comment
-                        });
+                        postComment(); // Call postComment when sending the comment
                       }
                     },
                   ),

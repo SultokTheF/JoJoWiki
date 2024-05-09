@@ -29,6 +29,7 @@ exports.GetActors = async (req, res, next) => {
           actor.data().season,
           actor.data().age,
           actor.data().description,
+          actor.data().imageUrl,
           actor.data().slogan
         );
 
