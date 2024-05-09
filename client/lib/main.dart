@@ -12,6 +12,7 @@ class JoJoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'JoJo App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -19,7 +20,7 @@ class JoJoApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => MainScreen(),
+        '/': (context) => const MainScreen(),
         '/listOfStuff': (context) => StuffListScreen(),
         '/listOfActors': (context) => ActorListScreen(),
         '/listOfNews': (context) => const NewsListScreen(),
