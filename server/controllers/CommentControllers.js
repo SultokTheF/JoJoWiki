@@ -1,18 +1,52 @@
 const firebase = require('../firebase.js');
 const Comment = require('../models/Comment.js');
-const { getFirestore, collection, doc, addDoc, getDoc, getDocs, updateDoc, deleteDoc } = require('firebase/firestore');
+const { getFirestore, collection, doc, addDoc, getDoc, getDocs, query, where, updateDoc, deleteDoc } = require('firebase/firestore');
 
 const db = getFirestore(firebase);
 
 exports.CreateComment = async (req, res, next) => {
   try {
     const data = req.body;
+
+    // Check if the associated news post exists
+    const newsId = data.newsId;
+    const newsRef = doc(db, 'news', newsId);
+    const newsSnapshot = await getDoc(newsRef);
+
+    if (!newsSnapshot.exists()) {
+      return res.status(404).json({ message: 'News post not found' });
+    }
+
     await addDoc(collection(db, 'comments'), data);
-    res.status(200).send('Comment created successfully');
+    res.status(201).send('Comment created successfully');
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 }
+
+exports.GetCommentsByNewsID = async (req, res, next) => {
+  try {
+    const newsId = req.params.newsId;
+    const commentsQuery = query(collection(db, 'comments'), where('newsId', '==', newsId));
+    const commentsSnapshot = await getDocs(commentsQuery);
+    const commentsArray = [];
+
+    if (commentsSnapshot.empty) {
+      res.status(404).json({ message: 'No comments found for this news post' });
+    } else {
+      commentsSnapshot.forEach(comment => {
+        const commentData = comment.data();
+        const newComment = new Comment(comment.id, commentData.text, commentData.newsId, commentData.username);
+        commentsArray.push(newComment);
+      });
+
+      res.status(200).json(commentsArray);
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+}
+
 
 exports.GetComments = async (req, res, next) => {
   try {
@@ -24,7 +58,7 @@ exports.GetComments = async (req, res, next) => {
     } else {
       comments.forEach(comment => {
         const commentData = comment.data();
-        const newComment = new Comment(comment.id, commentData.text, commentData.username);
+        const newComment = new Comment(comment.id, commentData.text, commentData.username, commentData.newsId);
         commentsArray.push(newComment);
       });
 

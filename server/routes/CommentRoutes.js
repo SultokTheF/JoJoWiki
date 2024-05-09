@@ -23,6 +23,9 @@ const router = express.Router();
  *         username:
  *           type: string
  *           description: The username of the commenter. Default is 'Anonymous'.
+ *         newsId:
+ *           type: string
+ *           description: The ID of the associated news post.
  */
 
 /**
@@ -163,10 +166,43 @@ const router = express.Router();
 
  */
 
+/**
+ * @swagger
+ * /comments/news/{newsId}:
+ *   get:
+ *     summary: Get comments for a specific news post
+ *     tags: [Comments]
+ *     parameters:
+ *       - in: path
+ *         name: newsId
+ *         required: true
+ *         description: ID of the news post to retrieve comments for
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: A successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Comment'
+ *       '404':
+ *         description: No comments found for this news post
+ *         content:
+ *           application/json:
+ *             example:
+ *               error:
+ *                 message: No comments found for this news post
+
+ */
+
 router.get('/', CommentControllers.GetComments);
 router.get('/:id', CommentControllers.GetComment);
 router.post('/', CommentControllers.CreateComment);
 router.put('/:id', CommentControllers.UpdateComment);
 router.delete('/:id', CommentControllers.DeleteComment);
+router.get('/news/:newsId', CommentControllers.GetCommentsByNewsID); 
 
 module.exports = router;
