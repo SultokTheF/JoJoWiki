@@ -8,6 +8,8 @@ const config = require('./config.js');
 
 const ActorRoutes = require('./routes/ActorRoutes.js');
 const CommentRoutes = require('./routes/CommentRoutes.js');
+const NewsRoutes = require('./routes/NewsRoutes.js');
+const StuffRoutes = require('./routes/StuffRoutes.js');
 
 // swagger
 const options = {
@@ -38,6 +40,8 @@ app.use(express.json());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 app.use('/actors', ActorRoutes);
 app.use('/comments', CommentRoutes);
+app.use('/news', NewsRoutes);
+app.use('/stuffs', StuffRoutes);
 
 // Start the server
 const start = async () => {
