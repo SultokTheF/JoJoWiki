@@ -19,7 +19,7 @@ exports.GetActors = async (req, res, next) => {
     const actors = await getDocs(collection(db, 'actors'));
     const actorsArray = [];
 
-    if(actors.empty()) {
+    if(actors.empty) {
       res.status(404).json({ message: 'No actors found' });
     } else {
       actors.forEach(actor => {
@@ -45,34 +45,33 @@ exports.GetActors = async (req, res, next) => {
 exports.GetActor = async (req, res, next) => {
   try {
     const actorId = req.params.id;
-    const actor = await getDoc(doc(db, 'actors', actorId));
+    const actorRef = doc(db, 'actors', actorId);
+    const actorSnapshot = await getDoc(actorRef);
 
-    const data = await getDoc(actor);
-
-    if(data.exists()) {
-      res.status(200).json(data.data());
+    if (actorSnapshot.exists()) {
+      res.status(200).json(actorSnapshot.data());
     } else {
       res.status(404).json({ message: 'Actor not found' });
     }
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
-}
+};
 
 exports.UpdateActor = async (req, res, next) => {
   try {
     const actorId = req.params.id;
     const data = req.body;
 
-    const Actor = doc(db, 'actors', actorId);
+    const actorRef = doc(db, 'actors', actorId);
 
-    await updateDoc(Actor, data);
+    await updateDoc(actorRef, data);
 
     res.status(200).send('Actor updated successfully');
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
-}
+};
 
 exports.DeleteActor = async (req, res, next) => {
   try {
@@ -84,4 +83,4 @@ exports.DeleteActor = async (req, res, next) => {
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
-}
+};
