@@ -7,9 +7,10 @@ import '../model/comment.dart';
 class NewsDetailsScreen extends StatefulWidget {
   final News news;
 
-  const NewsDetailsScreen({Key? key, required this.news}) : super(key: key);
+  const NewsDetailsScreen({super.key, required this.news});
 
   @override
+  // ignore: library_private_types_in_public_api
   _NewsDetailsScreenState createState() => _NewsDetailsScreenState();
 }
 
@@ -104,7 +105,7 @@ class _NewsDetailsScreenState extends State<NewsDetailsScreen> {
                     title: Text(comment.text),
                     subtitle: Text('By: ${comment.username}'),
                   );
-                }).toList(),
+                }),
               ],
             ),
             const SizedBox(height: 12.0),

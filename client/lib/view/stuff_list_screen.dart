@@ -5,9 +5,10 @@ import '../view/jojo_drawer.dart';
 import 'stuff_details_screen.dart'; // Import the StuffDetailsScreen
 
 class StuffListScreen extends StatefulWidget {
-  StuffListScreen({Key? key}) : super(key: key);
+  const StuffListScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _StuffListScreenState createState() => _StuffListScreenState();
 }
 
@@ -39,7 +40,7 @@ class _StuffListScreenState extends State<StuffListScreen> {
         future: _stuffListFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else {

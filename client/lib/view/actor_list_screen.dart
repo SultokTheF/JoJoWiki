@@ -7,7 +7,7 @@ import 'actor_details_screen.dart'; // Import the ActorDetailsScreen
 class ActorListScreen extends StatelessWidget {
   final ActorController _actorController = ActorController();
 
-  ActorListScreen({Key? key}) : super(key: key);
+  ActorListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class ActorListScreen extends StatelessWidget {
         future: _actorController.getActorList(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else {

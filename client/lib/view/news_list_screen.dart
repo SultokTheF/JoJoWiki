@@ -5,9 +5,10 @@ import '../view/jojo_drawer.dart';
 import 'news_details_screen.dart'; // Import the NewsDetailsScreen
 
 class NewsListScreen extends StatefulWidget {
-  const NewsListScreen({Key? key}) : super(key: key);
+  const NewsListScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _NewsListScreenState createState() => _NewsListScreenState();
 }
 
@@ -25,7 +26,7 @@ class _NewsListScreenState extends State<NewsListScreen> {
         future: _newsController.getNewsList(), // Use FutureBuilder here
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else {

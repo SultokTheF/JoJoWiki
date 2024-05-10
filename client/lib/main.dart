@@ -10,6 +10,7 @@ import 'package:client/view/event_screen.dart'; // Import EventScreen
 void main() => runApp(const JoJoApp());
 
 class JoJoApp extends StatelessWidget {
+  // ignore: use_key_in_widget_constructors
   const JoJoApp({Key? key});
 
   @override
@@ -24,7 +25,7 @@ class JoJoApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const MainScreen(),
-        '/listOfStuff': (context) => StuffListScreen(),
+        '/listOfStuff': (context) => const StuffListScreen(),
         '/listOfActors': (context) => ActorListScreen(),
         '/listOfNews': (context) => const NewsListScreen(),
         '/login': (context) => LoginPage(), // Add route for LoginScreen
