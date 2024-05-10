@@ -24,6 +24,7 @@ const options = {
     },
     servers: [
       { url: 'http://localhost:8080' },
+      { url: 'https://jojowiki.onrender.com' },
     ],
   },
   apis: ['./routes/*.js'],
