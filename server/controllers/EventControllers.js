@@ -1,6 +1,7 @@
 const firebase = require('../firebase.js');
 const Events = require('../models/Event.js');
 const { getFirestore, collection, doc, addDoc, getDoc, getDocs, updateDoc, deleteDoc } = require('firebase/firestore');
+const { logError, logInfo } = require('../logger');
 
 const db = getFirestore(firebase);
 
@@ -9,7 +10,9 @@ exports.CreateEvent = async (req, res, next) => {
     const data = req.body;
     await addDoc(collection(db, 'events'), data);
     res.status(200).json({ message: 'Event created successfully' });
+    logInfo('Event created successfully');
   } catch (error) {
+    logError('Error creating event:', error);
     res.status(400).json({ message: error.message });
   }
 };
@@ -35,9 +38,11 @@ exports.GetEvents = async (req, res, next) => {
       });
 
       res.status(200).json(eventsArray);
+      logInfo('Retrieved all events successfully');
     }
   } catch (error) {
     res.status(400).json({ message: error.message });
+    logError('Error getting events:', error);
   }
 };
 
@@ -54,6 +59,7 @@ exports.GetEvent = async (req, res, next) => {
     }
   } catch (error) {
     res.status(400).json({ message: error.message });
+    logError('Error getting event by ID:', error);
   }
 };
 
@@ -69,6 +75,7 @@ exports.UpdateEvent = async (req, res, next) => {
     res.status(200).json({ message: 'Event updated successfully' });
   } catch (error) {
     res.status(400).json({ message: error.message });
+    logError('Error getting event by ID:', error);
   }
 };
 
@@ -81,6 +88,7 @@ exports.DeleteEvent = async (req, res, next) => {
     res.status(200).send('Event deleted successfully');
   } catch (error) {
     res.status(400).json({ message: error.message });
+    logError('Error getting event by ID:', error);
   }
 };
 
@@ -105,10 +113,12 @@ exports.GetRandomEvent = async (req, res, next) => {
 
       // Get a random index within the events array length
       const randomIndex = Math.floor(Math.random() * eventsArray.length);
-      const randomEvent = eventsArray[randomIndex]; // Select the event at the random index
+      const randomEvent = eventsArray[randomIndex];
+      logInfo('Random Event returned successfully'); // Select the event at the random index
       res.status(200).json(randomEvent);
     }
   } catch (error) {
     res.status(400).json({ message: error.message });
+    logError('Error getting event by ID:', error);
   }
 };
