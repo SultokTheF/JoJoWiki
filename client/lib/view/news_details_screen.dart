@@ -25,7 +25,7 @@ class _NewsDetailsScreenState extends State<NewsDetailsScreen> {
   }
 
   Future<void> loadComments() async {
-    final response = await http.get(Uri.parse('http://localhost:8080/comments/news/${widget.news.id}'));
+    final response = await http.get(Uri.parse('https://jojowiki.onrender.com/comments/news/${widget.news.id}'));
 
     if (response.statusCode == 200) {
       List<dynamic> jsonResponse = jsonDecode(response.body);
@@ -45,7 +45,7 @@ class _NewsDetailsScreenState extends State<NewsDetailsScreen> {
     );
 
     final response = await http.post(
-      Uri.parse('http://localhost:8080/comments'),
+      Uri.parse('https://jojowiki.onrender.com/comments'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

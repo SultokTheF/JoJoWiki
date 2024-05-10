@@ -4,7 +4,7 @@ import '../model/news.dart';
 
 class NewsController {
   Future<List<News>> getNewsList() async {
-    final response = await http.get(Uri.parse('http://localhost:8080/news'));
+    final response = await http.get(Uri.parse('https://jojowiki.onrender.com/news'));
     
     if (response.statusCode == 200) {
       Iterable jsonResponse = json.decode(response.body);

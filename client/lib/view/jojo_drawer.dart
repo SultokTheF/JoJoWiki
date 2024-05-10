@@ -1,36 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class JoJoDrawer extends StatefulWidget {
+class JoJoDrawer extends StatelessWidget {
   const JoJoDrawer({super.key});
-
-  @override
-  // ignore: library_private_types_in_public_api
-  _JoJoDrawerState createState() => _JoJoDrawerState();
-}
-
-class _JoJoDrawerState extends State<JoJoDrawer> {
-  String? username;
-
-  @override
-  void initState() {
-    super.initState();
-    getUsername();
-  }
-
-  void getUsername() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      username = prefs.getString('username');
-    });
-  }
-
-  void logout(BuildContext context) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.clear(); // Clear all data in SharedPreferences
-    // ignore: use_build_context_synchronously
-    Navigator.pushReplacementNamed(context, '/login'); // Navigate back to the login screen
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,37 +45,7 @@ class _JoJoDrawerState extends State<JoJoDrawer> {
             onTap: () {
               Navigator.pushReplacementNamed(context, '/listOfNews');
             },
-          ),
-          ListTile(
-            title: const Text('Events'), // Add Events screen option
-            onTap: () {
-              Navigator.pushReplacementNamed(context, '/events');
-            },
-          ),
-          if (username == null)
-            ListTile(
-              title: const Text('Login'),
-              onTap: () {
-                Navigator.pushReplacementNamed(context, '/login');
-              },
-            ),
-          if (username == null)
-            ListTile(
-              title: const Text('Register'),
-              onTap: () {
-                Navigator.pushReplacementNamed(context, '/register');
-              },
-            ),
-
-          if (username != null)
-            ListTile(
-              title: Text('Logged in as: $username'),
-            ),
-          if (username != null)
-            ListTile(
-              title: const Text('Logout'),
-              onTap: () => logout(context),
-            ),
+          )
         ],
       ),
     );

@@ -4,7 +4,7 @@ import '../model/stuff.dart';
 
 class StuffController {
   Future<List<Stuff>> fetchStuffList() async {
-    final response = await http.get(Uri.parse('http://localhost:8080/stuffs'));
+    final response = await http.get(Uri.parse('https://jojowiki.onrender.com/stuffs'));
 
     if (response.statusCode == 200) {
       List<dynamic> jsonResponse = jsonDecode(response.body);

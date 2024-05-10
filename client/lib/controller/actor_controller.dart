@@ -4,7 +4,7 @@ import '../model/actor.dart';
 
 class ActorController {
   Future<List<Actor>> getActorList() async {
-    final response = await http.get(Uri.parse('http://localhost:8080/actors/'));
+    final response = await http.get(Uri.parse('https://jojowiki.onrender.com/actors/'));
 
     if (response.statusCode == 200) {
       Iterable jsonResponse = json.decode(response.body);
