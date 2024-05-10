@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppStyles {
   static const TextStyle textStyle = TextStyle(
-    fontFamily: 'JoJoFont',
-    fontSize: 15,
+    fontFamily: 'JoJoFont'
   );
 
   static ButtonStyle elevatedButtonStyle(BuildContext context) => ButtonStyle(
