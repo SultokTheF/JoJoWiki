@@ -59,3 +59,11 @@ Jojowiki is licensed under [Creative Commons Attribution-NonCommercial-ShareAlik
 
 Wireframe: https://www.canva.com/design/DAGEEWIBbeA/mZskHnEXhLkgtJOJ2tD6xw/edit
 Figma: https://www.figma.com/file/q8CacNqqxGfAiLOz1psQi7/Low-fid-Wireframe-Draft-(Community)?type=whiteboard&node-id=0%3A1&t=K4OFBE4YpHNn7qLi-1
+
+
+## Documentations
+Swagger Documentation Deployed by the link: https://jojowiki.onrender.com/api-docs/ and everyone user can user this server as how they want
+Also here is Postman implementation by the link: https://interstellar-crater-682520.postman.co/workspace/My-Workspace~05a0f3f2-a711-4e6d-8268-ce393a9e0d9c/collection/28676152-16ae48d9-35a3-4190-9b3e-eb7823ccc4e7?action=share&creator=28676152
+
+
+
