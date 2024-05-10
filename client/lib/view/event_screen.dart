@@ -31,17 +31,18 @@ class Event {
 }
 
 class CalendarScreen extends StatefulWidget {
-  const CalendarScreen({Key? key}) : super(key: key);
+  const CalendarScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _CalendarScreenState createState() => _CalendarScreenState();
 }
 
 class _CalendarScreenState extends State<CalendarScreen> {
   CalendarFormat _calendarFormat = CalendarFormat.month;
-  DateTime _focusedDay = DateTime.now();
+  final DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
-  Map<DateTime, List<Event>> _events = {};
+  final Map<DateTime, List<Event>> _events = {};
 
   @override
   void initState() {
@@ -74,9 +75,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Calendar with Events'),
+        title: const Text('Calendar with Events'),
       ),
-      drawer: JoJoDrawer(),
+      drawer: const JoJoDrawer(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,10 +102,10 @@ class _CalendarScreenState extends State<CalendarScreen> {
               },
             ),
             if (_selectedDay != null) ...[
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(
                 'Events on ${_selectedDay!.day}/${_selectedDay!.month}/${_selectedDay!.year}:',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               if (_events.containsKey(_selectedDay!)) ...[
                 for (Event event in _events[_selectedDay!]!) ...[
@@ -115,7 +116,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   ),
                 ],
               ] else
-                Text('No events found'),
+                const Text('No events found'),
             ],
           ],
         ),
@@ -125,7 +126,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: CalendarScreen(),
   ));
 }

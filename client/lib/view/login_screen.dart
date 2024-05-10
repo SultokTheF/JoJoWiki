@@ -8,8 +8,10 @@ class LoginPage extends StatelessWidget {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  LoginPage({super.key});
+
   Future<void> login(BuildContext context) async {
-    final apiUrl = 'http://localhost:8080/auth/login';
+    const apiUrl = 'http://localhost:8080/auth/login';
     final userData = {
       "email": usernameController.text,
       "password": passwordController.text,
@@ -27,14 +29,15 @@ class LoginPage extends StatelessWidget {
       prefs.setString('email', usernameController.text);
 
       showDialog(
+        // ignore: use_build_context_synchronously
         context: context,
         builder: (_) => AlertDialog(
-          title: Text('Success'),
-          content: Text('User logged in successfully.'),
+          title: const Text('Success'),
+          content: const Text('User logged in successfully.'),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text('OK'),
+              child: const Text('OK'),
             ),
           ],
         ),
@@ -42,14 +45,15 @@ class LoginPage extends StatelessWidget {
     } else {
       // Login failed, show error message
       showDialog(
+        // ignore: use_build_context_synchronously
         context: context,
         builder: (_) => AlertDialog(
-          title: Text('Error'),
-          content: Text('Failed to log in.'),
+          title: const Text('Error'),
+          content: const Text('Failed to log in.'),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text('OK'),
+              child: const Text('OK'),
             ),
           ],
         ),
@@ -60,17 +64,17 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Login')),
-      drawer: JoJoDrawer(),
+      appBar: AppBar(title: const Text('Login')),
+      drawer: const JoJoDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            TextField(controller: usernameController, decoration: InputDecoration(labelText: 'Email')),
-            TextField(controller: passwordController, decoration: InputDecoration(labelText: 'Password')),
+            TextField(controller: usernameController, decoration: const InputDecoration(labelText: 'Email')),
+            TextField(controller: passwordController, decoration: const InputDecoration(labelText: 'Password')),
             ElevatedButton(
               onPressed: () => login(context),
-              child: Text('Login'),
+              child: const Text('Login'),
             ),
           ],
         ),

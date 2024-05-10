@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class JoJoDrawer extends StatefulWidget {
-  const JoJoDrawer({Key? key}) : super(key: key);
+  const JoJoDrawer({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _JoJoDrawerState createState() => _JoJoDrawerState();
 }
 
@@ -27,6 +28,7 @@ class _JoJoDrawerState extends State<JoJoDrawer> {
   void logout(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.clear(); // Clear all data in SharedPreferences
+    // ignore: use_build_context_synchronously
     Navigator.pushReplacementNamed(context, '/login'); // Navigate back to the login screen
   }
 
@@ -100,7 +102,7 @@ class _JoJoDrawerState extends State<JoJoDrawer> {
             ),
           if (username != null)
             ListTile(
-              title: Text('Logout'),
+              title: const Text('Logout'),
               onTap: () => logout(context),
             ),
         ],

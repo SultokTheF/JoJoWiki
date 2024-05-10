@@ -10,8 +10,10 @@ class RegisterPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  RegisterPage({super.key});
+
   Future<void> register(BuildContext context) async {
-    final apiUrl = 'http://localhost:8080/auth/register';
+    const apiUrl = 'http://localhost:8080/auth/register';
     final userData = {
       "username": usernameController.text,
       "email": emailController.text,
@@ -31,14 +33,15 @@ class RegisterPage extends StatelessWidget {
       prefs.setString('username', usernameController.text);
 
       showDialog(
+        // ignore: use_build_context_synchronously
         context: context,
         builder: (_) => AlertDialog(
-          title: Text('Success'),
-          content: Text('User registered successfully.'),
+          title: const Text('Success'),
+          content: const Text('User registered successfully.'),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text('OK'),
+              child: const Text('OK'),
             ),
           ],
         ),
@@ -46,14 +49,15 @@ class RegisterPage extends StatelessWidget {
     } else {
       // Registration failed, show error message
       showDialog(
+        // ignore: use_build_context_synchronously
         context: context,
         builder: (_) => AlertDialog(
-          title: Text('Error'),
-          content: Text('Failed to register.'),
+          title: const Text('Error'),
+          content: const Text('Failed to register.'),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text('OK'),
+              child: const Text('OK'),
             ),
           ],
         ),
@@ -64,18 +68,18 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Register')),
-      drawer: JoJoDrawer(),
+      appBar: AppBar(title: const Text('Register')),
+      drawer: const JoJoDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            TextField(controller: usernameController, decoration: InputDecoration(labelText: 'Username')),
-            TextField(controller: emailController, decoration: InputDecoration(labelText: 'Email')),
-            TextField(controller: passwordController, decoration: InputDecoration(labelText: 'Password')),
+            TextField(controller: usernameController, decoration: const InputDecoration(labelText: 'Username')),
+            TextField(controller: emailController, decoration: const InputDecoration(labelText: 'Email')),
+            TextField(controller: passwordController, decoration: const InputDecoration(labelText: 'Password')),
             ElevatedButton(
               onPressed: () => register(context),
-              child: Text('Register'),
+              child: const Text('Register'),
             ),
           ],
         ),
