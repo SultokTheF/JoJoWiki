@@ -58,7 +58,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: Text('Login', style: TextStyle(fontFamily: 'JoJoFont')),
       ),
       drawer: JoJoDrawer(),
       body: Center(
@@ -69,31 +69,31 @@ class LoginScreen extends StatelessWidget {
             children: [
               TextFormField(
                 controller: emailController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Email',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextFormField(
                 controller: passwordController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Password',
                   border: OutlineInputBorder(),
                 ),
                 obscureText: true,
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () => _login(context),
-                child: Text('Login'),
+                child: const Text('Login'),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextButton(
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, '/signup');
                 },
-                child: Text("Don't have an account? Create it!"),
+                child: const Text("Don't have an account? Create it!"),
               ),
             ],
           ),

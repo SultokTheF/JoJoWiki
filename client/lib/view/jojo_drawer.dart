@@ -2,7 +2,7 @@ import 'package:client/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class JoJoDrawer extends StatelessWidget {
-  const JoJoDrawer({Key? key});
+  const JoJoDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,81 +12,102 @@ class JoJoDrawer extends StatelessWidget {
         children: <Widget>[
           const DrawerHeader(
             decoration: BoxDecoration(
-              color: Colors.blue,
+              color: Color.fromRGBO(194, 0, 251, .5),
             ),
-            child: Text(
-              'JoJo Wiki',
-              style: TextStyle(
-                color: Colors.white,
-                fontFamily: 'JoJoFont',
-                fontSize: 24,
-              ),
-            ),
-          ),
-          _buildButtonWithBorder(
-            context,
-            'Login',
-            '/login',
-            Colors.grey // Color for Login button
-          ),
-          _buildButtonWithBorder(
-            context,
-            'SignUp',
-            '/signup',
-            Colors.grey, // Color for SignUp button
+            child: Image(image: AssetImage('assets/images/JoJo.png')),
           ),
           ListTile(
-            title: const Text('Main'),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 30.0), // Отступы
+            title: const Text('Login', style: TextStyle(fontFamily: 'JoJoFont')),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, '/login');
+            },
+          ),
+          const Divider(
+            color: Colors.grey,
+            height: 1,
+            thickness: 1,
+            indent: 25, // Уменьшенные отступы
+            endIndent: 50,
+          ),
+          ListTile(
+            contentPadding: const EdgeInsets.symmetric(horizontal: 30.0), // Отступы
+            title: const Text('SignUp', style: TextStyle(fontFamily: 'JoJoFont')),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, '/signup');
+            },
+          ),
+          const Divider(
+            color: Colors.grey,
+            height: 1,
+            thickness: 1,
+            indent: 25, // Уменьшенные отступы
+            endIndent: 50,
+          ),
+          ListTile(
+            contentPadding: const EdgeInsets.symmetric(horizontal: 30.0), // Отступы
+            title: const Text('Main', style: TextStyle(fontFamily: 'JoJoFont')),
             onTap: () {
               Navigator.pushReplacementNamed(context, '/');
             },
           ),
+          const Divider(
+            color: Colors.grey,
+            height: 1,
+            thickness: 1,
+            indent: 25, // Уменьшенные отступы
+            endIndent: 50,
+          ),
           ListTile(
-            title: const Text("JoJos"),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 30.0), // Отступы
+            title: const Text("JoJos", style: TextStyle(fontFamily: 'JoJoFont')),
             onTap: () {
               Navigator.pushReplacementNamed(context, '/listOfActors');
             },
           ),
+          const Divider(
+            color: Colors.grey,
+            height: 1,
+            thickness: 1,
+            indent: 25, // Уменьшенные отступы
+            endIndent: 50,
+          ),
           ListTile(
-            title: const Text('Stuff'),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 30.0), // Отступы
+            title: const Text('Stuff', style: TextStyle(fontFamily: 'JoJoFont')),
             onTap: () {
               Navigator.pushReplacementNamed(context, '/listOfStuff');
             },
           ),
+          const Divider(
+            color: Colors.grey,
+            height: 1,
+            thickness: 1,
+            indent: 25, // Уменьшенные отступы
+            endIndent: 50,
+          ),
           ListTile(
-            title: const Text('News'),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 30.0), // Отступы
+            title: const Text('News', style: TextStyle(fontFamily: 'JoJoFont')),
             onTap: () {
               Navigator.pushReplacementNamed(context, '/listOfNews');
             },
           ),
+          const Divider(
+            color: Colors.grey,
+            height: 1,
+            thickness: 1,
+            indent: 25, // Уменьшенные отступы
+            endIndent: 50,
+          ),
           ListTile(
-            title: const Text('Events'),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 30.0), // Отступы
+            title: const Text('Events', style: TextStyle(fontFamily: 'JoJoFont')),
             onTap: () {
               Navigator.pushReplacementNamed(context, '/events');
             },
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildButtonWithBorder(
-    BuildContext context,
-    String title,
-    String routeName,
-    Color color,
-  ) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.black), // Border color
-        borderRadius: BorderRadius.circular(10), // Rounded border
-        color: color,
-      ),
-      child: ListTile(
-        title: Text(title),
-        onTap: () {
-          Navigator.pushReplacementNamed(context, routeName);
-        },
       ),
     );
   }

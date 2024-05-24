@@ -88,8 +88,10 @@ class ActorListScreen extends StatelessWidget {
                           );
                         },
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-                          overlayColor: MaterialStateProperty.all<Color>(Colors.blue.shade500),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              const Color.fromRGBO(194, 0, 251, 1)),
+                          overlayColor:
+                              MaterialStateProperty.all<Color>(const Color.fromRGBO(97, 0, 125, 1)),
                           foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                           textStyle: MaterialStateProperty.all<TextStyle>(
                             const TextStyle(fontSize: 15),

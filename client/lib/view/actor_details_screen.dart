@@ -18,7 +18,7 @@ class ActorDetailsScreen extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color.fromRGBO(194, 0, 251, 1),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -49,7 +49,8 @@ class ActorDetailsScreen extends StatelessWidget {
             const SizedBox(height: 16.0),
             Text(
               'Age: ${actor.age}',
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
+              style:
+                  const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
             ),
             const SizedBox(height: 8.0),
             Text(
@@ -78,7 +79,10 @@ class ActorDetailsScreen extends StatelessWidget {
                   const SizedBox(height: 8.0),
                   Text(
                     'Slogan: ${actor.slogan}',
-                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.blue),
+                    style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromRGBO(194, 0, 251, 1)),
                   ),
                 ],
               ),

@@ -20,7 +20,7 @@ class MainScreen extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color.fromRGBO(194, 0, 251, 1),
       ),
       drawer: const JoJoDrawer(),
       body: SingleChildScrollView(
@@ -40,11 +40,14 @@ class MainScreen extends StatelessWidget {
   Widget _buildSectionTitle(String title) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.black, width: 2),
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.blue,
+        color: const Color.fromRGBO(194, 0, 251, 1), // Цвет фона такой же, как у AppBar
+        borderRadius: const BorderRadius.only(
+          bottomLeft: Radius.circular(16.0),
+          bottomRight: Radius.circular(16.0),
+        ),
       ),
       padding: const EdgeInsets.all(12),
+      alignment: Alignment.center, // Центрируем текст
       child: Text(
         title,
         style: const TextStyle(
@@ -80,6 +83,4 @@ class MainScreen extends StatelessWidget {
       ),
     );
   }
-
-  
 }

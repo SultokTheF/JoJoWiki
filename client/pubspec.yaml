@@ -32,6 +32,10 @@ dependencies:
   table_calendar: ^3.0.2
   shared_preferences: ^2.0.8
   fluttertoast: ^8.0.8
+  hive: ^2.2.3
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.10
+  path_provider: ^2.1.3
 
 dev_dependencies:
   flutter_test:
@@ -54,7 +58,7 @@ flutter:
   fonts:
     - family: JoJoFont
       fonts:
-        - asset: assets/fonts/JOJO____.TTF
+        - asset: assets/fonts/ITC Benguiat Bold.otf
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
@@ -70,3 +74,4 @@ flutter:
     - assets/stuff/askar.jpg
     - assets/stuff/sanzhar.jpg
     - assets/stuff/sultaniyar.jpg
+    - assets/images/JoJo.png
